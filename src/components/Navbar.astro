@@ -1,0 +1,114 @@
+---
+interface Link {
+  label: string;
+  href: string;
+}
+const {
+  brand = "BIMCAD STUDIO",
+  links = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Contact", href: "/contact" },
+  ] as Link[],
+} = Astro.props;
+---
+
+<header class="sticky top-0 z-50 border-b border-zinc-800 bg-black/80 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3" aria-label="Main">
+    <!-- Brand -->
+    <a href="/" class="text-base font-semibold tracking-wide">
+      {brand}
+    </a>
+
+    <!-- Desktop menu -->
+    <ul class="hidden items-center gap-6 md:flex">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} class="text-sm text-zinc-200 transition hover:text-white">{l.label}</a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Burger -->
+    <button
+      id="nav-toggle"
+      class="relative h-10 w-10 md:hidden"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span
+        class="absolute left-1/2 top-1/2 block h-0.5 w-6 -translate-x-1/2 -translate-y-2 bg-white transition-all will-change-transform"
+      ></span>
+      <span
+        class="absolute left-1/2 top-1/2 block h-0.5 w-6 -translate-x-1/2 bg-white transition-opacity"
+      ></span>
+      <span
+        class="absolute left-1/2 top-1/2 block h-0.5 w-6 -translate-x-1/2 translate-y-2 bg-white transition-all will-change-transform"
+      ></span>
+    </button>
+  </nav>
+
+  <!-- Mobile panel -->
+  <div
+    id="mobile-menu"
+    class="max-h-0 overflow-hidden border-t border-zinc-800 bg-black/95 transition-[max-height] duration-300 md:hidden"
+  >
+    <ul class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-2">
+      {links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="block rounded px-3 py-3 text-sm text-zinc-200 hover:bg-zinc-900 hover:text-white"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</header>
+
+<!-- Tiny vanilla JS to toggle -->
+<script>
+  const btn = document.getElementById('nav-toggle');
+  const panel = document.getElementById('mobile-menu');
+
+  function setOpen(open) {
+    btn.setAttribute('aria-expanded', String(open));
+    // Animate burger into "X"
+    const [top, mid, bottom] = btn.querySelectorAll('span');
+    if (open) {
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+      top.style.transform = 'translate(-50%, -50%) rotate(45deg)';
+      mid.style.opacity = '0';
+      bottom.style.transform = 'translate(-50%, -50%) rotate(-45deg)';
+    } else {
+      panel.style.maxHeight = '0px';
+      top.style.transform = 'translate(-50%, -8px) rotate(0)';
+      mid.style.opacity = '1';
+      bottom.style.transform = 'translate(-50%, 8px) rotate(0)';
+    }
+  }
+
+  // Init positions
+  setOpen(false);
+
+  btn.addEventListener('click', () => {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    setOpen(!isOpen);
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  // Close when clicking a link (delegation)
+  panel.addEventListener('click', (e) => {
+    const a = e.target.closest('a');
+    if (a) setOpen(false);
+  });
+</script>

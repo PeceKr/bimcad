@@ -1,11 +1,11 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/Layout.astro"; // or ../layouts/Layout.astro if you kept the name
 ---
-
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Home — BIMCAD Studio">
+  <section class="flex h-[80vh] items-center justify-center bg-gradient-to-br from-zinc-900 to-black text-center text-white">
+    <div>
+      <h1 class="text-4xl font-bold md:text-6xl">Precision in every line.</h1>
+      <p class="mt-4 text-lg md:text-xl text-zinc-300">Insight in every model.</p>
+    </div>
+  </section>
+</BaseLayout>
