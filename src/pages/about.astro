@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/Layout.astro";
+import bgImage from "../assets/bg.png";
+---
+<BaseLayout title="About Us — BIMCAD Studio">
+  <section class="relative min-h-full w-full">
+    <div class="fixed inset-0 -z-10">
+      <img 
+        src={bgImage.src} 
+        alt="Architectural background" 
+        class="h-full w-full object-cover blur-sm opacity-50"
+      />
+    </div>
+    
+    <div class="relative z-10 bg-black/50 backdrop-blur-sm min-h-screen">
+      <div class="mx-auto px-[10%] py-12 lg:py-20">
+        
+        <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+          
+          <div class="space-y-12">
+            <div>
+              <h1 class="mb-6 text-3xl font-bold text-white lg:text-4xl"><span class="text-zinc-400">About</span> US<span class="text-zinc-400">.</span></h1>
+              <div class="space-y-4 text-xl leading-loose text-white text-justify lg:text-2xl">
+                <p>
+                  BIMCAD Studio was founded out of a desire to raise the level of digitalisation and 
+                  professionalism with in the construction industry.Through training, consulting, and 
+                  outsourcing services, we aim to build a stronger foundation for digital construction across 
+                  the region and beyond. Our mission is simple, to help companies and professionals 
+                  embrace BIM and CAD in a way that is efficient, scalable, and future-ready.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="mb-6 text-3xl font-bold text-white lg:text-4xl"><span class="text-zinc-400">Why</span> US<span class="text-zinc-400">?</span></h2>
+              <div class="space-y-6 text-xl leading-loose text-white text-justify lg:text-2xl">
+                <div>
+                  <p class="mb-2">
+                    • Quality for us means precision,reliability, and delivering results that make a real difference.
+                    From every model created to every project supported.
+                  </p>
+                </div>
+                <div>
+                  <p>
+                    • BIMCAD Studio believes that every project, no matter its size, deserves the clarity, precision,
+                    and efficiency that BIM brings, and that true progress in construction starts with 
+                    knowledge and collaboration
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-8">
+            <div>
+              <h2 class="mb-6 text-3xl font-bold text-white lg:text-4xl"><span class="text-zinc-400">BIMCAD</span> Studio<span class="text-zinc-400">.</span></h2>
+              <div class="space-y-4 text-xl leading-loose text-white text-justify lg:text-2xl">
+                <p>
+                  After nine years of experience as a BIM Manager on major projects across 
+                  Australia and UK, including stadiums, hospitals, and complex commercial 
+                  developments, Ilija Loshonc developed a deep understanding of the power of 
+                  BIM technology. He sees BIM not just as software or a 3D model, but as a way of 
+                  thinking that enables smarter decisions, better coordination, and fewer errors 
+                  throughout a building's lifecycle. Noticing a growing interest in BIM in Macedonia,
+                  but also the clear lack of practical expertise and structured implementation, Ilija 
+                  was inspired to create BIMCAD Studio.
+                </p>
+                <p>
+                  The studio combines knowledge,technology, and collaboration, offering 
+                  consulting, professional training, and outsourcing services to make BIM 
+                  accessible, efficient, and effective for companies both locally and glob
+                </p>
+              </div>
+            </div>
+
+            <div class="w-full">
+              <!-- I will add the photo when I have it -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

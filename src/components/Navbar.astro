@@ -1,4 +1,13 @@
 ---
+import Logo from "../assets/Logo.png";
+import MenuSeparator from "../assets/menu-separator.png";
+import PhoneActive from "../assets/slushalka10001.png";
+import PhoneInactive from "../assets/slushalka10002.png";
+import EmailActive from "../assets/email10001.png";
+import EmailInactive from "../assets/email10002.png";
+import LocationActive from "../assets/map_point10001.png";
+import LocationInactive from "../assets/map_point10002.png";
+
 interface Link {
   label: string;
   href: string;
@@ -7,108 +16,182 @@ const {
   brand = "BIMCAD STUDIO",
   links = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
+    { label: "About Us", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Portfolio", href: "/portfolio" },
-    { label: "Contact", href: "/contact" },
+    { label: "Contact Us", href: "/contact" },
   ] as Link[],
 } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 border-b border-zinc-800 bg-black/80 backdrop-blur">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3" aria-label="Main">
-    <!-- Brand -->
-    <a href="/" class="text-base font-semibold tracking-wide">
-      {brand}
-    </a>
+<header class="sticky top-0 z-50 w-full bg-black">
+  <nav class="relative flex w-full items-center justify-between px-4 py-5 lg:px-8 lg:py-6" aria-label="Main">
+    <div class="flex items-center gap-5 lg:contents">
+      <button
+        id="nav-toggle"
+        class="relative z-50 h-6 w-6 flex-shrink-0 lg:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="absolute left-0 top-0 block h-0.5 w-full bg-white transition-all"></span>
+        <span class="absolute left-0 top-1/2 block h-0.5 w-full -translate-y-1/2 bg-white transition-all"></span>
+        <span class="absolute left-0 bottom-0 block h-0.5 w-full bg-white transition-all"></span>
+      </button>
 
-    <!-- Desktop menu -->
-    <ul class="hidden items-center gap-6 md:flex">
-      {links.map((l) => (
-        <li>
-          <a href={l.href} class="text-sm text-zinc-200 transition hover:text-white">{l.label}</a>
-        </li>
-      ))}
+      <a href="/" class="relative z-50 flex items-center flex-shrink-0">
+        <img src={Logo.src} alt="BIMCAD STUDIO" class="h-8 w-auto lg:h-10" />
+      </a>
+    </div>
+
+    <ul class="hidden items-center gap-0 lg:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2">
+      {links.map((l, index) => {
+        const currentPath = Astro.url.pathname;
+        const isActive = currentPath === l.href || (l.href !== "/" && currentPath.startsWith(l.href));
+        return (
+          <li class="flex items-center">
+            {index > 0 && (
+              <img 
+                src={MenuSeparator.src} 
+                alt="" 
+                class="mx-8 h-10 w-auto lg:h-12"
+                aria-hidden="true"
+              />
+            )}
+            <a 
+              href={l.href} 
+              class={`text-2xl font-normal transition ${
+                isActive ? "text-white" : "text-zinc-400"
+              } hover:text-white`}
+            >
+              {l.label}
+            </a>
+          </li>
+        );
+      })}
     </ul>
 
-    <!-- Burger -->
-    <button
-      id="nav-toggle"
-      class="relative h-10 w-10 md:hidden"
-      aria-label="Open menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <span
-        class="absolute left-1/2 top-1/2 block h-0.5 w-6 -translate-x-1/2 -translate-y-2 bg-white transition-all will-change-transform"
-      ></span>
-      <span
-        class="absolute left-1/2 top-1/2 block h-0.5 w-6 -translate-x-1/2 bg-white transition-opacity"
-      ></span>
-      <span
-        class="absolute left-1/2 top-1/2 block h-0.5 w-6 -translate-x-1/2 translate-y-2 bg-white transition-all will-change-transform"
-      ></span>
+    <div class="hidden items-center gap-10 lg:flex lg:ml-auto">
+      <a href="tel:" aria-label="Phone" class="group relative inline-block">
+        <img 
+          src={PhoneInactive.src} 
+          alt="Phone" 
+          style="height: 28px; width: 28px;"
+          class="transition-opacity group-hover:opacity-0"
+        />
+        <img 
+          src={PhoneActive.src} 
+          alt="Phone" 
+          style="height: 28px; width: 28px;"
+          class="absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
+        />
+      </a>
+      <a href="mailto:" aria-label="Email" class="group relative inline-block">
+        <img 
+          src={EmailInactive.src} 
+          alt="Email" 
+          style="height: 28px; width: 28px;"
+          class="transition-opacity group-hover:opacity-0"
+        />
+        <img 
+          src={EmailActive.src} 
+          alt="Email" 
+          style="height: 28px; width: 28px;"
+          class="absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
+        />
+      </a>
+      <a href="#" aria-label="Location" class="group relative inline-block">
+        <img 
+          src={LocationInactive.src} 
+          alt="Location" 
+          style="height: 28px; width: 28px;"
+          class="transition-opacity group-hover:opacity-0"
+        />
+        <img 
+          src={LocationActive.src} 
+          alt="Location" 
+          style="height: 28px; width: 28px;"
+          class="absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
+        />
+      </a>
+    </div>
+
+    <button class="lg:hidden" aria-label="More options">
+      <svg class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+        <circle cx="12" cy="5" r="1.5" />
+        <circle cx="12" cy="12" r="1.5" />
+        <circle cx="12" cy="19" r="1.5" />
+      </svg>
     </button>
   </nav>
 
-  <!-- Mobile panel -->
   <div
     id="mobile-menu"
-    class="max-h-0 overflow-hidden border-t border-zinc-800 bg-black/95 transition-[max-height] duration-300 md:hidden"
+    class="fixed left-0 top-0 z-40 h-[70%] w-0 overflow-hidden bg-black transition-[width] duration-300 lg:hidden"
   >
-    <ul class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-2">
-      {links.map((l) => (
-        <li>
-          <a
-            href={l.href}
-            class="block rounded px-3 py-3 text-sm text-zinc-200 hover:bg-zinc-900 hover:text-white"
-          >
-            {l.label}
-          </a>
-        </li>
-      ))}
-    </ul>
+    <div class="flex h-full flex-col pt-20">
+      <ul class="flex flex-col gap-1 px-6">
+        {links.map((l) => {
+          const currentPath = Astro.url.pathname;
+          const isActive = currentPath === l.href || (l.href !== "/" && currentPath.startsWith(l.href));
+          return (
+            <li>
+              <a
+                href={l.href}
+                class={`block rounded px-3 py-3 text-base transition ${
+                  isActive ? "text-white" : "text-zinc-400"
+                } hover:text-white`}
+              >
+                {l.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   </div>
 </header>
 
-<!-- Tiny vanilla JS to toggle -->
 <script>
-  const btn = document.getElementById('nav-toggle');
-  const panel = document.getElementById('mobile-menu');
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('nav-toggle');
+    const panel = document.getElementById('mobile-menu');
+    const bgImage = document.getElementById('hero-bg-image');
+    
+    if (!btn || !panel) return;
 
-  function setOpen(open) {
-    btn.setAttribute('aria-expanded', String(open));
-    // Animate burger into "X"
-    const [top, mid, bottom] = btn.querySelectorAll('span');
-    if (open) {
-      panel.style.maxHeight = panel.scrollHeight + 'px';
-      top.style.transform = 'translate(-50%, -50%) rotate(45deg)';
-      mid.style.opacity = '0';
-      bottom.style.transform = 'translate(-50%, -50%) rotate(-45deg)';
-    } else {
-      panel.style.maxHeight = '0px';
-      top.style.transform = 'translate(-50%, -8px) rotate(0)';
-      mid.style.opacity = '1';
-      bottom.style.transform = 'translate(-50%, 8px) rotate(0)';
+    function setOpen(open) {
+      btn.setAttribute('aria-expanded', String(open));
+      
+      if (open) {
+        panel.style.width = '280px';
+        document.body.style.overflow = 'hidden';
+        if (bgImage && bgImage.dataset.bgMenu) {
+          bgImage.src = bgImage.dataset.bgMenu;
+        }
+      } else {
+        panel.style.width = '0px';
+        document.body.style.overflow = '';
+        if (bgImage && bgImage.dataset.bgDefault) {
+          bgImage.src = bgImage.dataset.bgDefault;
+        }
+      }
     }
-  }
 
-  // Init positions
-  setOpen(false);
+    setOpen(false);
 
-  btn.addEventListener('click', () => {
-    const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    setOpen(!isOpen);
-  });
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      setOpen(!isOpen);
+    });
 
-  // Close on ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
-  });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
 
-  // Close when clicking a link (delegation)
-  panel.addEventListener('click', (e) => {
-    const a = e.target.closest('a');
-    if (a) setOpen(false);
+    panel.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) setOpen(false);
+    });
   });
 </script>

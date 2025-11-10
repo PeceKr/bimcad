@@ -1,11 +1,27 @@
 ---
-import BaseLayout from "../layouts/Layout.astro"; // or ../layouts/Layout.astro if you kept the name
+import BaseLayout from "../layouts/Layout.astro";
+import bgImage from "../assets/bg.png";
+import bg1Image from "../assets/bg1.png";
 ---
 <BaseLayout title="Home — BIMCAD Studio">
-  <section class="flex h-[80vh] items-center justify-center bg-gradient-to-br from-zinc-900 to-black text-center text-white">
-    <div>
-      <h1 class="text-4xl font-bold md:text-6xl">Precision in every line.</h1>
-      <p class="mt-4 text-lg md:text-xl text-zinc-300">Insight in every model.</p>
+  <section class="relative h-full w-full overflow-hidden">
+    <div class="absolute inset-0">
+      <!-- I will add the photo for desktop when I have it -->
+      <img 
+        id="hero-bg-image"
+        src={bgImage.src} 
+        data-bg-default={bgImage.src}
+        data-bg-menu={bg1Image.src}
+        alt="Architectural rendering" 
+        class="h-full w-full object-cover transition-opacity duration-300"
+      />
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 flex justify-end pb-8 lg:justify-end lg:pb-12">
+      <div class="bg-zinc-900/70 pl-8 pr-0 py-6 lg:px-20 lg:py-10 lg:pr-32">
+        <p class="text-left text-3xl font-thin text-white lg:text-6xl pl-[88px]">PRECISION IN EVERY LINE.</p>
+        <p class="mt-2 text-3xl font-black text-white lg:mt-4 lg:text-6xl">INSIGHT IN EVERY MODEL.</p>
+      </div>
     </div>
   </section>
 </BaseLayout>
