@@ -6,7 +6,7 @@ const {
   description = "Precision in every line. Insight in every model.",
 } = Astro.props;
 ---
-<html lang="en">
+<html lang="en" class="h-full overflow-hidden">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,13 +14,10 @@ const {
     <link rel="icon" href="/favicon.ico" />
     <title>{title}</title>
   </head>
-  <body class="bg-black text-zinc-100">
+  <body class="flex h-full flex-col bg-black text-zinc-100">
     <Navbar />
-    <main class="min-h-screen">
+    <main class="flex-1 overflow-y-auto">
       <slot />
     </main>
-    <footer class="border-t border-zinc-800 py-10 text-center text-sm text-zinc-400">
-      © {new Date().getFullYear()} BIMCAD Studio
-    </footer>
   </body>
 </html>
