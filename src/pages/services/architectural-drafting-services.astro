@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/Layout.astro";
+import ArchImage from "../../assets/ARCHITECTURAL.png";
+
+const tabs = [
+  { label: "BIM Services.", href: "/services/bim-services", active: false },
+  { label: "CAD Services.", href: "/services/cad-services", active: false },
+  { label: "ARCHITECTURAL DRAFTING Services.", href: "/services/architectural-drafting-services", active: true },
+];
+---
+
+<BaseLayout title="ARCHITECTURAL DRAFTING Services — BIMCAD Studio" navHeading="ARCHITECTURAL DRAFTING Services">
+  <section class="min-h-full w-full bg-black">
+    <div class="px-4 py-8 lg:px-16 lg:py-14">
+      <div class="hidden w-screen items-center gap-12 bg-[#1B1B1B] px-12 py-6 text-3xl font-semibold uppercase tracking-[0.06em] text-[#7f7f7f] lg:flex relative left-1/2 -translate-x-1/2">
+        {tabs.map((tab) => (
+          <a
+            href={tab.href}
+            class={`transition ${
+              tab.active ? "text-white" : "text-[#7f7f7f]"
+            }`}
+          >
+            {tab.label}
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-10 grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div class="w-full">
+          <img
+            src={ArchImage.src}
+            alt="Architectural drafting visual"
+            class="h-full w-full object-contain"
+          />
+        </div>
+
+        <div class="space-y-8 text-lg leading-[2.15] text-[#999999] lg:text-2xl">
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">Concept and Planning Drawings</h2>
+            <p class="mt-4">
+              Translating design ideas into accurate 2D plans and layouts for early-stage presentations and approvals.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">Construction Documentation</h2>
+            <p class="mt-4">
+              Producing detailed drawings for tender, construction, and regulatory submissions.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">As-Built Drawings</h2>
+            <p class="mt-4">
+              Delivering accurate documentation that reflects the final built condition of the project.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">Drawing Updates and Revisions</h2>
+            <p class="mt-4">
+              Maintaining consistency and accuracy throughout the design and construction process.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">Standardisation and Quality Control</h2>
+            <p class="mt-4">
+              Ensuring all drawings comply with project standards and are formatted for efficient collaboration.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-10 w-full text-lg leading-[2.15] text-[#999999] lg:max-w-[50%] lg:text-2xl">
+        At <span class="font-bold text-[#f3f3f3]">BIMCAD Studio</span>, we provide precise and reliable architectural drafting services tailored to meet project requirements and industry standards. Our team ensures that every drawing communicates design intent clearly and supports seamless coordination across disciplines.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+

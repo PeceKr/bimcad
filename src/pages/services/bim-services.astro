@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/Layout.astro";
+import BIMImage from "../../assets/pic1.png";
+
+const tabs = [
+  { label: "BIM Services.", href: "/services/bim-services", active: true },
+  { label: "CAD Services.", href: "/services/cad-services", active: false },
+  { label: "ARCHITECTURAL DRAFTING Services.", href: "/services/architectural-drafting-services", active: false },
+];
+---
+
+<BaseLayout title="BIM Services — BIMCAD Studio" navHeading="BIM Services">
+  <section class="min-h-full w-full bg-black">
+    <div class="px-4 py-8 lg:px-16 lg:py-14">
+      <div class="hidden w-screen items-center gap-12 bg-[#1B1B1B] px-12 py-6 text-3xl font-semibold uppercase tracking-[0.06em] text-[#7f7f7f] lg:flex relative left-1/2 -translate-x-1/2">
+        {tabs.map((tab) => (
+          <a
+            href={tab.href}
+            class={`transition ${
+              tab.active ? "text-white" : "text-[#7f7f7f]"
+            }`}
+          >
+            {tab.label}
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-10 grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div class="w-full">
+          <img
+            src={BIMImage.src}
+            alt="BIM services visual"
+            class="h-full w-full object-contain"
+          />
+        </div>
+
+        <div class="space-y-8 text-lg leading-[2.15] text-[#999999] lg:text-2xl">
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">BIM Modeling and Drafting</h2>
+            <p class="mt-4">
+              Producing accurate, coordinated 3D models for architectural, structural, and MEP projects.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">Scan-to-BIM Point Cloud Processing</h2>
+            <p class="mt-4">
+              Converting laser scans and reality capture data into precise BIM models for coordination and documentation.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">BIM Consulting</h2>
+            <p class="mt-4">
+              Advising companies on best practices, workflows, and standards to implement BIM effectively.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">BIM Training</h2>
+            <p class="mt-4">
+              Hands-on courses enabling teams to develop practical skills in Revit, CAD, and other BIM tools.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-white lg:text-3xl">Outsourcing Services</h2>
+            <p class="mt-4">
+              Providing flexible BIM support to help teams meet project deadlines without compromising quality.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-10 w-full text-lg leading-[2.15] text-[#999999] lg:max-w-[50%] lg:text-2xl">
+        At <span class="font-bold text-[#f3f3f3]">BIMCAD Studio</span>, we provide comprehensive BIM solutions that help projects run smoother, smarter, and more efficiently. Our services are designed to support companies at every stage of the construction process, from planning to execution.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
