@@ -1,0 +1,291 @@
+---
+import BaseLayout from "../layouts/Layout.astro";
+import bgImage from "../assets/bg.png";
+import ResidentialHouseImg from "../assets/Residential House.png";
+import ChildcareImg from "../assets/Childcare.png";
+import PublicServiceImg from "../assets/Public Service.png";
+import ScanToBIMImg from "../assets/Scan To BIM.png";
+import ScanToCADImg from "../assets/Scan To CAD.png";
+import RevitFamiliesImg from "../assets/Revit Families.png";
+
+const portfolioItems = [
+  {
+    id: 1,
+    title: "Residential House",
+    image: ResidentialHouseImg,
+    category: "Architecture",
+  },
+  {
+    id: 2,
+    title: "Childcare",
+    image: ChildcareImg,
+    category: "Architecture",
+  },
+  {
+    id: 3,
+    title: "Public Service",
+    image: PublicServiceImg,
+    category: "Architecture",
+  },
+  {
+    id: 4,
+    title: "Scan To BIM",
+    image: ScanToBIMImg,
+    category: "BIM Services",
+  },
+  {
+    id: 5,
+    title: "Scan To CAD",
+    image: ScanToCADImg,
+    category: "CAD Services",
+  },
+  {
+    id: 6,
+    title: "Revit Families",
+    image: RevitFamiliesImg,
+    category: "BIM Services",
+  },
+];
+---
+
+<BaseLayout title="Portfolio — BIMCAD Studio">
+  <section class="relative w-full min-h-[92vh]">
+    <div class="fixed inset-0 -z-10">
+      <img
+        src={bgImage.src}
+        alt="Architectural background"
+        class="h-full w-full object-cover blur-sm opacity-30"
+      />
+    </div>
+
+    <div class="relative z-10 px-6 py-12 lg:px-12 lg:py-16">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="mb-12 text-4xl font-bold text-white lg:text-6xl text-center">
+          Our <span class="font-bold">Portfolio</span>
+        </h1>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+          {
+            portfolioItems.map((item) => (
+              <div
+                class="group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-105"
+                data-portfolio-id={item.id}
+              >
+                <img
+                  src={item.image.src}
+                  alt={item.title}
+                  class="w-full h-64 lg:h-72 object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                  <div class="absolute bottom-0 left-0 right-0 p-6">
+                    <p class="text-sm text-gray-300 mb-1">{item.category}</p>
+                    <h3 class="text-2xl font-bold text-white">{item.title}</h3>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Modal -->
+  <div
+    id="gallery-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 p-4"
+  >
+    <button
+      id="close-modal"
+      class="absolute top-4 right-4 text-white hover:text-gray-300 transition z-50"
+      aria-label="Close gallery"
+    >
+      <svg
+        class="w-10 h-10"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <button
+      id="prev-image"
+      class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition z-50"
+      aria-label="Previous image"
+    >
+      <svg
+        class="w-12 h-12"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <button
+      id="next-image"
+      class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition z-50"
+      aria-label="Next image"
+    >
+      <svg
+        class="w-12 h-12"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+    <div class="max-w-6xl w-full">
+      <img
+        id="modal-image"
+        src=""
+        alt=""
+        class="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+      />
+      <div class="mt-4 text-center">
+        <p id="modal-category" class="text-gray-300 mb-1"></p>
+        <h2 id="modal-title" class="text-3xl font-bold text-white"></h2>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const portfolioItems = [
+    {
+      id: 1,
+      title: "Residential House",
+      image: new URL("../assets/Residential House.png", import.meta.url).href,
+      category: "Architecture",
+    },
+    {
+      id: 2,
+      title: "Childcare",
+      image: new URL("../assets/Childcare.png", import.meta.url).href,
+      category: "Architecture",
+    },
+    {
+      id: 3,
+      title: "Public Service",
+      image: new URL("../assets/Public Service.png", import.meta.url).href,
+      category: "Architecture",
+    },
+    {
+      id: 4,
+      title: "Scan To BIM",
+      image: new URL("../assets/Scan To BIM.png", import.meta.url).href,
+      category: "BIM Services",
+    },
+    {
+      id: 5,
+      title: "Scan To CAD",
+      image: new URL("../assets/Scan To CAD.png", import.meta.url).href,
+      category: "CAD Services",
+    },
+    {
+      id: 6,
+      title: "Revit Families",
+      image: new URL("../assets/Revit Families.png", import.meta.url).href,
+      category: "BIM Services",
+    },
+  ];
+
+  let currentImageIndex = 0;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("gallery-modal") as HTMLDivElement;
+    const modalImage = document.getElementById(
+      "modal-image",
+    ) as HTMLImageElement;
+    const modalTitle = document.getElementById(
+      "modal-title",
+    ) as HTMLHeadingElement;
+    const modalCategory = document.getElementById(
+      "modal-category",
+    ) as HTMLParagraphElement;
+    const closeBtn = document.getElementById(
+      "close-modal",
+    ) as HTMLButtonElement;
+    const prevBtn = document.getElementById("prev-image") as HTMLButtonElement;
+    const nextBtn = document.getElementById("next-image") as HTMLButtonElement;
+    const portfolioCards = document.querySelectorAll("[data-portfolio-id]");
+
+    function openModal(index: number) {
+      currentImageIndex = index;
+      const item = portfolioItems[index];
+
+      modalImage.src = item.image;
+      modalImage.alt = item.title;
+      modalTitle.textContent = item.title;
+      modalCategory.textContent = item.category;
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+
+    function showPrevImage() {
+      currentImageIndex =
+        (currentImageIndex - 1 + portfolioItems.length) % portfolioItems.length;
+      openModal(currentImageIndex);
+    }
+
+    function showNextImage() {
+      currentImageIndex = (currentImageIndex + 1) % portfolioItems.length;
+      openModal(currentImageIndex);
+    }
+
+    portfolioCards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const id = parseInt(card.getAttribute("data-portfolio-id") || "0");
+        const index = portfolioItems.findIndex((item) => item.id === id);
+        if (index !== -1) {
+          openModal(index);
+        }
+      });
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    prevBtn.addEventListener("click", showPrevImage);
+    nextBtn.addEventListener("click", showNextImage);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (modal.classList.contains("flex")) {
+        if (e.key === "Escape") closeModal();
+        if (e.key === "ArrowLeft") showPrevImage();
+        if (e.key === "ArrowRight") showNextImage();
+      }
+    });
+  });
+</script>

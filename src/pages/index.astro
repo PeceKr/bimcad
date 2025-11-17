@@ -2,18 +2,28 @@
 import BaseLayout from "../layouts/Layout.astro";
 import bgImage from "../assets/bg.png";
 import bg1Image from "../assets/bg1.png";
+import homeImage from "../assets/home.jpg";
 ---
 <BaseLayout title="Home — BIMCAD Studio">
   <section class="relative h-full w-full overflow-hidden">
     <div class="absolute inset-0">
-      <!-- I will add the photo for desktop when I have it -->
-      <img 
+      <!-- Mobile/Tablet background -->
+      <img
         id="hero-bg-image"
-        src={bgImage.src} 
+        src={bgImage.src}
         data-bg-default={bgImage.src}
         data-bg-menu={bg1Image.src}
-        alt="Architectural rendering" 
-        class="h-full w-full object-cover transition-opacity duration-300"
+        alt="Architectural rendering"
+        class="h-full w-full object-cover transition-opacity duration-300 lg:hidden"
+      />
+      <!-- Desktop background -->
+      <img
+        id="hero-bg-image-desktop"
+        src={homeImage.src}
+        data-bg-default={homeImage.src}
+        data-bg-menu={bg1Image.src}
+        alt="Architectural rendering"
+        class="hidden h-full w-full object-cover transition-opacity duration-300 lg:block"
       />
     </div>
 

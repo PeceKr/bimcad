@@ -76,7 +76,7 @@ const {
               <button
                 id="services-desktop-toggle"
                 type="button"
-                class={`flex items-center gap-3 text-2xl font-normal transition ${
+                class={`flex items-center gap-3 text-base font-normal transition ${
                   isServicesActive ? "text-white" : "text-zinc-400"
                 } hover:text-white`}
               >
@@ -119,9 +119,9 @@ const {
                 aria-hidden="true"
               />
             )}
-            <a 
-              href={l.href} 
-              class={`text-2xl font-normal transition ${
+            <a
+              href={l.href}
+              class={`text-base font-normal transition ${
                 isActive ? "text-white" : "text-zinc-400"
               } hover:text-white`}
             >
@@ -134,44 +134,44 @@ const {
 
     <div class="hidden items-center gap-10 lg:flex lg:ml-auto">
       <a href="tel:" aria-label="Phone" class="group relative inline-block">
-        <img 
-          src={PhoneInactive.src} 
-          alt="Phone" 
-          style="height: 28px; width: 28px;"
+        <img
+          src={PhoneInactive.src}
+          alt="Phone"
+          style="height: 20px; width: 20px;"
           class="transition-opacity group-hover:opacity-0"
         />
-        <img 
-          src={PhoneActive.src} 
-          alt="Phone" 
-          style="height: 28px; width: 28px;"
+        <img
+          src={PhoneActive.src}
+          alt="Phone"
+          style="height: 20px; width: 20px;"
           class="absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
         />
       </a>
       <a href="mailto:" aria-label="Email" class="group relative inline-block">
-        <img 
-          src={EmailInactive.src} 
-          alt="Email" 
-          style="height: 28px; width: 28px;"
+        <img
+          src={EmailInactive.src}
+          alt="Email"
+          style="height: 20px; width: 20px;"
           class="transition-opacity group-hover:opacity-0"
         />
-        <img 
-          src={EmailActive.src} 
-          alt="Email" 
-          style="height: 28px; width: 28px;"
+        <img
+          src={EmailActive.src}
+          alt="Email"
+          style="height: 20px; width: 20px;"
           class="absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
         />
       </a>
       <a href="#" aria-label="Location" class="group relative inline-block">
-        <img 
-          src={LocationInactive.src} 
-          alt="Location" 
-          style="height: 28px; width: 28px;"
+        <img
+          src={LocationInactive.src}
+          alt="Location"
+          style="height: 20px; width: 20px;"
           class="transition-opacity group-hover:opacity-0"
         />
-        <img 
-          src={LocationActive.src} 
-          alt="Location" 
-          style="height: 28px; width: 28px;"
+        <img
+          src={LocationActive.src}
+          alt="Location"
+          style="height: 20px; width: 20px;"
           class="absolute top-0 left-0 opacity-0 transition-opacity group-hover:opacity-100"
         />
       </a>
