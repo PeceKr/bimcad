@@ -21,12 +21,13 @@ const {
     { label: "Portfolio", href: "/portfolio" },
     { label: "Contact Us", href: "/contact" },
   ] as Link[],
+  navHeading = "",
 } = Astro.props;
 ---
 
 <header class="sticky top-0 z-50 w-full bg-black">
-  <nav class="relative flex w-full items-center justify-between px-4 py-5 lg:px-8 lg:py-6" aria-label="Main">
-    <div class="flex items-center gap-5 lg:contents">
+  <nav class="relative flex w-full items-center justify-between px-4 py-3 lg:px-8 lg:py-4" aria-label="Main">
+    <div class="flex items-center gap-5 lg:flex lg:gap-6">
       <button
         id="nav-toggle"
         class="relative z-50 h-6 w-6 flex-shrink-0 lg:hidden"
@@ -44,10 +45,70 @@ const {
       </a>
     </div>
 
-    <ul class="hidden items-center gap-0 lg:flex lg:absolute lg:left-1/2 lg:-translate-x-1/2">
+    {navHeading && (
+      <p class="pointer-events-none absolute right-12 top-1/2 z-40 -translate-y-1/2 text-right text-sm font-semibold uppercase tracking-[0.08em] text-[#999999] lg:hidden">
+        {navHeading}
+      </p>
+    )}
+
+    <ul class="hidden items-center gap-0 lg:flex lg:absolute lg:left-[55%] lg:-translate-x-1/2">
       {links.map((l, index) => {
         const currentPath = Astro.url.pathname;
         const isActive = currentPath === l.href || (l.href !== "/" && currentPath.startsWith(l.href));
+        
+        if (l.label === "Services") {
+          const serviceLinks = [
+            { label: "BIM Services", href: "/services/bim-services" },
+            { label: "CAD Services", href: "/services/cad-services" },
+            { label: "ARCHITECTURAL DRAFTING Services", href: "/services/architectural-drafting-services" },
+          ];
+          const isServicesActive = currentPath.startsWith("/services");
+          return (
+            <li class="relative flex items-center group">
+              {index > 0 && (
+                <img 
+                  src={MenuSeparator.src} 
+                  alt="" 
+                  class="mx-8 h-10 w-auto lg:h-12"
+                  aria-hidden="true"
+                />
+              )}
+              <button
+                id="services-desktop-toggle"
+                type="button"
+                class={`flex items-center gap-3 text-2xl font-normal transition ${
+                  isServicesActive ? "text-white" : "text-zinc-400"
+                } hover:text-white`}
+              >
+                <span>{l.label}</span>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <ul
+                id="services-desktop-submenu"
+                class="absolute top-full left-1/2 -translate-x-1/2 mt-2 hidden group-hover:block bg-black border border-zinc-800 rounded min-w-[280px] py-2"
+              >
+                {serviceLinks.map((sl) => {
+                  const isSubActive = currentPath === sl.href;
+                  return (
+                    <li>
+                      <a
+                        href={sl.href}
+                        class={`block px-4 py-2 text-lg transition ${
+                          isSubActive ? "text-white" : "text-zinc-400"
+                        } hover:text-white hover:bg-zinc-900`}
+                      >
+                        {sl.label}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </li>
+          );
+        }
+        
         return (
           <li class="flex items-center">
             {index > 0 && (
@@ -134,6 +195,54 @@ const {
         {links.map((l) => {
           const currentPath = Astro.url.pathname;
           const isActive = currentPath === l.href || (l.href !== "/" && currentPath.startsWith(l.href));
+          
+          if (l.label === "Services") {
+            const serviceLinks = [
+              { label: "BIM Services", href: "/services/bim-services" },
+              { label: "CAD Services", href: "/services/cad-services" },
+              { label: "ARCHITECTURAL DRAFTING Services", href: "/services/architectural-drafting-services" },
+            ];
+            const isServicesActive = currentPath.startsWith("/services");
+            return (
+              <li>
+                <button
+                  id="services-toggle"
+                  class={`flex w-full items-center justify-between rounded px-3 py-3 text-base transition ${
+                    isServicesActive ? "text-white" : "text-zinc-400"
+                  } hover:text-white`}
+                >
+                  <span>{l.label}</span>
+                  <svg 
+                    id="services-arrow"
+                    class="h-4 w-4 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <ul id="services-submenu" class="hidden flex-col gap-1 pl-6">
+                  {serviceLinks.map((sl) => {
+                    const isSubActive = currentPath === sl.href;
+                    return (
+                      <li>
+                        <a
+                          href={sl.href}
+                          class={`block rounded px-3 py-3 text-base transition ${
+                            isSubActive ? "text-white" : "text-zinc-400"
+                          } hover:text-white`}
+                        >
+                          -{sl.label}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            );
+          }
+          
           return (
             <li>
               <a
@@ -193,5 +302,49 @@ const {
       const a = e.target.closest('a');
       if (a) setOpen(false);
     });
+
+    const servicesToggle = document.getElementById('services-toggle');
+    const servicesSubmenu = document.getElementById('services-submenu');
+    const servicesArrow = document.getElementById('services-arrow');
+    
+    if (servicesToggle && servicesSubmenu && servicesArrow) {
+      servicesToggle.addEventListener('click', () => {
+        const isOpen = !servicesSubmenu.classList.contains('hidden');
+        if (isOpen) {
+          servicesSubmenu.classList.add('hidden');
+          servicesArrow.style.transform = 'rotate(0deg)';
+        } else {
+          servicesSubmenu.classList.remove('hidden');
+          servicesArrow.style.transform = 'rotate(180deg)';
+        }
+      });
+    }
+
+    const servicesDesktopToggle = document.getElementById('services-desktop-toggle');
+    const servicesDesktopSubmenu = document.getElementById('services-desktop-submenu');
+    const servicesDesktopLi = servicesDesktopToggle?.closest('li');
+    
+    if (servicesDesktopLi && servicesDesktopSubmenu) {
+      let timeout: number | undefined;
+      
+      servicesDesktopLi.addEventListener('mouseenter', () => {
+        if (timeout) clearTimeout(timeout);
+        servicesDesktopSubmenu.classList.remove('hidden');
+      });
+      
+      servicesDesktopLi.addEventListener('mouseleave', () => {
+        timeout = window.setTimeout(() => {
+          servicesDesktopSubmenu.classList.add('hidden');
+        }, 200);
+      });
+      
+      servicesDesktopSubmenu.addEventListener('mouseenter', () => {
+        if (timeout) clearTimeout(timeout);
+      });
+      
+      servicesDesktopSubmenu.addEventListener('mouseleave', () => {
+        servicesDesktopSubmenu.classList.add('hidden');
+      });
+    }
   });
 </script>
