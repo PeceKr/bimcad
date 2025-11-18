@@ -10,67 +10,78 @@ const tabs = [
 ---
 
 <BaseLayout title="CAD Services — BIMCAD Studio" navHeading="CAD Services">
-  <section class="min-h-full w-full bg-black">
-    <div class="px-4 py-8 lg:px-16 lg:py-14">
-      <div class="hidden w-screen items-center gap-12 bg-[#1B1B1B] px-12 py-6 text-3xl font-semibold uppercase tracking-[0.06em] text-[#7f7f7f] lg:flex relative left-1/2 -translate-x-1/2">
-        {tabs.map((tab) => (
-          <a
-            href={tab.href}
-            class={`transition ${
-              tab.active ? "text-white" : "text-[#7f7f7f]"
-            }`}
-          >
-            {tab.label}
-          </a>
-        ))}
-      </div>
+  <section class="h-full w-full bg-black overflow-x-hidden overflow-y-hidden flex flex-col">
+    <!-- Submenu Bar - Full Width -->
+    <div class="hidden w-full items-center justify-center gap-12 bg-[#1B1B1B] px-4 py-6 lg:px-12 text-2xl font-extrabold uppercase tracking-wide text-[#7f7f7f] lg:flex flex-shrink-0">
+      {tabs.map((tab) => (
+        <a
+          href={tab.href}
+          class={`transition hover:text-white whitespace-nowrap ${
+            tab.active ? "text-white" : "text-[#7f7f7f]"
+          }`}
+        >
+          {tab.label}
+        </a>
+      ))}
+    </div>
 
-      <div class="mt-10 grid gap-12 lg:grid-cols-2 lg:items-start">
-        <div class="w-full">
-          <img
-            src={CADImage.src}
-            alt="CAD services visual"
-            class="h-full w-full object-contain"
-          />
+    <!-- Content Container -->
+    <div class="flex-1 px-4 py-4 lg:px-16 lg:py-8 overflow-hidden">
+      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 h-full items-start">
+        <!-- Left Column: Image and Text -->
+        <div class="w-full flex flex-col h-full">
+          <div class="flex-shrink-0">
+            <img
+              src={CADImage.src}
+              alt="CAD services visual"
+              class="w-full h-auto object-contain"
+            />
+          </div>
+          <div class="text-base text-[#999999] lg:text-lg space-y-2 mt-4 flex-shrink-0">
+            <p>
+              At <span class="font-bold text-[#f3f3f3]">BIMCAD Studio</span>, we provide professional CAD services to support design and documentation needs across all stages of a project.
+            </p>
+            <p>
+              Our CAD solutions ensure precision, clarity, and efficiency, complementing our BIM offerings.
+            </p>
+          </div>
         </div>
 
-        <div class="space-y-8 text-lg leading-[2.15] text-[#999999] lg:text-2xl">
+        <!-- Right Column: Services List -->
+        <div class="space-y-8 text-base text-[#999999] lg:text-lg overflow-y-auto h-full">
           <div>
-            <h2 class="text-2xl font-bold text-white lg:text-3xl">2D Drafting and Documentation</h2>
-            <p class="mt-4">
+            <h2 class="text-2xl font-bold text-white lg:text-3xl mb-4">2D Drafting and Documentation</h2>
+            <p class="leading-relaxed">
               Producing detailed technical drawings for architectural, structural, and MEP projects.
             </p>
           </div>
           <div>
-            <h2 class="text-2xl font-bold text-white lg:text-3xl">Drawing Conversion and Standardisation</h2>
-            <p class="mt-4">
+            <h2 class="text-2xl font-bold text-white lg:text-3xl mb-4">Drawing Conversion and Standardisation</h2>
+            <p class="leading-relaxed">
               Updating legacy drawings to current CAD formats while ensuring compliance with industry standards.
             </p>
           </div>
           <div>
-            <h2 class="text-2xl font-bold text-white lg:text-3xl">Shop and Fabrication Drawings</h2>
-            <p class="mt-4">
+            <h2 class="text-2xl font-bold text-white lg:text-3xl mb-4">Shop and Fabrication Drawings</h2>
+            <p class="leading-relaxed">
               Preparing accurate drawings for manufacturing, fabrication, and installation.
             </p>
           </div>
           <div>
-            <h2 class="text-2xl font-bold text-white lg:text-3xl">Point Cloud to CAD</h2>
-            <p class="mt-4">
+            <h2 class="text-2xl font-bold text-white lg:text-3xl mb-4">Point Cloud to CAD</h2>
+            <p class="leading-relaxed">
               Converting laser scan data into precise CAD drawings for refurbishments, retrofits, or as-built documentation.
             </p>
           </div>
           <div>
-            <h2 class="text-2xl font-bold text-white lg:text-3xl">Outsourcing Services</h2>
-            <p class="mt-4">
+            <h2 class="text-2xl font-bold text-white lg:text-3xl mb-4">Outsourcing Services</h2>
+            <p class="leading-relaxed">
               Providing flexible CAD support to handle peak workloads and deliver documentation on schedule.
             </p>
           </div>
         </div>
       </div>
 
-      <p class="mt-10 w-full text-lg leading-[2.15] text-[#999999] lg:max-w-[50%] lg:text-2xl">
-        At <span class="font-bold text-[#f3f3f3]">BIMCAD Studio</span>, we provide professional CAD services to support design and documentation needs across all stages of a project. Our CAD solutions ensure precision, clarity, and efficiency, complementing our BIM offerings.
-      </p>
     </div>
   </section>
 </BaseLayout>

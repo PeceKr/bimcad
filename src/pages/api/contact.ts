@@ -3,6 +3,8 @@ import { Resend } from 'resend';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
+export const prerender = false;
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
@@ -20,9 +22,9 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Send email using Resend
-    const data = await resend.emails.send({
-      from: 'BIMCAD Contact Form <onboarding@resend.dev>', // You'll need to update this with your verified domain
-      to: ['info@bimcadstudio.com'], // Replace with your actual email
+    const { data, error } = await resend.emails.send({
+      from: 'info@bimcadstudio.com', 
+      to: ['contact@bimcadstudio.com'], 
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
@@ -35,8 +37,17 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
+    if (error) {
+      console.error('Resend API error:', error);
+      return new Response(
+        JSON.stringify({ error: error.message || 'Failed to send email' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log('Email sent successfully:', data);
     return new Response(
-      JSON.stringify({ success: true, id: data.id }),
+      JSON.stringify({ success: true, id: data?.id }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
