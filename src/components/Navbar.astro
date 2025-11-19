@@ -133,7 +133,7 @@ const {
     </ul>
 
     <div class="hidden items-center gap-10 lg:flex lg:ml-auto">
-      <a href="tel:" aria-label="Phone" class="group relative inline-block">
+      <a href="tel:+38978252905" aria-label="Phone" class="group relative inline-block">
         <img
           src={PhoneInactive.src}
           alt="Phone"
@@ -296,6 +296,20 @@ const {
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') setOpen(false);
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (!isOpen) return;
+
+      const target = e.target as HTMLElement;
+      const clickedInsideMenu = panel.contains(target);
+      const clickedToggleButton = btn.contains(target);
+
+      if (!clickedInsideMenu && !clickedToggleButton) {
+        setOpen(false);
+      }
     });
 
     panel.addEventListener('click', (e) => {

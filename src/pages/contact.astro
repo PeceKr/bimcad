@@ -37,7 +37,7 @@ import mapImage from "../assets/map.png";
                 <p class="text-sm" id="error-text">Please try again later.</p>
               </div>
 
-              <form id="contact-form" class="space-y-4 lg:space-y-6" method="POST" action="/api/contact">
+              <form id="contact-form" class="space-y-4 lg:space-y-6" method="POST" action="/send-email.php">
                 <div>
                   <input
                     type="text"
@@ -187,7 +187,7 @@ import mapImage from "../assets/map.png";
 
       try {
         const formData = new FormData(form);
-        const response = await fetch('/api/contact', {
+        const response = await fetch('/send-email.php', {
           method: 'POST',
           body: formData,
         });
