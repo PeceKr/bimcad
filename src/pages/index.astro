@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/Layout.astro";
 import bgImage from "../assets/bg.png";
 import bg1Image from "../assets/bg1.png";
-import homeImage from "../assets/home.jpg";
+import homeVideo from "../assets/home_video.mp4";
 ---
 <BaseLayout title="Home — BIMCAD Studio">
   <section class="relative h-full w-full overflow-hidden">
@@ -17,14 +17,15 @@ import homeImage from "../assets/home.jpg";
         class="h-full w-full object-cover transition-opacity duration-300 lg:hidden"
       />
       <!-- Desktop background -->
-      <img
-        id="hero-bg-image-desktop"
-        src={homeImage.src}
-        data-bg-default={homeImage.src}
-        data-bg-menu={bg1Image.src}
-        alt="Architectural rendering"
+      <video
+        id="hero-bg-video-desktop"
+        src={homeVideo}
+        autoplay
+        muted
+        loop
+        playsinline
         class="hidden h-full w-full object-cover transition-opacity duration-300 lg:block"
-      />
+      ></video>
     </div>
 
     <div class="absolute bottom-0 left-0 right-0 flex justify-end pb-8 lg:justify-end lg:pb-12">
