@@ -20,27 +20,28 @@ const tabs = [
   >
     <!-- Submenu Bar - Full Width -->
     <div
-      class="hidden w-full items-center justify-center gap-12 bg-[#1B1B1B] px-4 py-6 lg:px-12 text-2xl font-extrabold uppercase tracking-wide text-[#7f7f7f] lg:flex flex-shrink-0 overflow-x-hidden"
+      class="hidden w-full items-center justify-center gap-12 bg-[#1B1B1B] px-4 py-6 lg:px-12 tracking-wide text-[#7f7f7f] lg:flex flex-shrink-0 overflow-x-hidden"
+      style="font-size: 30pt;"
     >
       {
         tabs.map((tab) => {
           const parts = tab.label.split(" ");
-          const first = parts.shift(); // first word
-          const rest = parts.join(" "); // everything after
+          const first = parts.shift();
+          const rest = parts.join(" ");
           return (
             <a
               href={tab.href}
-              class={`transition whitespace-nowrap tracking-wide uppercase font-extrabold ${
+              class={`transition whitespace-nowrap tracking-wide ${
                 tab.active ? "text-white" : "text-[#7f7f7f]"
               } hover:text-white`}
             >
-              <span class="text-white">{first}</span>
-              {rest ? ` ${rest}` : ""}
+              <span class="font-bold text-white uppercase">{first}</span>
+              <span class="font-normal capitalize">{rest ? ` ${rest}` : ""}</span>
             </a>
           );
         })
       }
-      
+
     </div>
 
     <!-- Content Container -->
