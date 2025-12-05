@@ -1,5 +1,5 @@
 ---
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/desktop/Logo.png";
 import MenuSeparator from "../assets/menu-separator.png";
 import PhoneActive from "../assets/slushalka10001.png";
 import PhoneInactive from "../assets/slushalka10002.png";
@@ -51,11 +51,11 @@ const {
       </p>
     )}
 
-    <ul class="hidden items-center gap-0 lg:flex lg:absolute lg:left-[55%] lg:-translate-x-1/2">
+    <ul class="hidden items-center gap-0 lg:flex lg:absolute lg:left-[55%] lg:-translate-x-1/2" style="font-family: 'Poppins', sans-serif;">
       {links.map((l, index) => {
         const currentPath = Astro.url.pathname;
         const isActive = currentPath === l.href || (l.href !== "/" && currentPath.startsWith(l.href));
-        
+
         if (l.label === "Services") {
           const serviceLinks = [
             { label: "BIM Services", href: "/services/bim-services" },
@@ -66,9 +66,9 @@ const {
           return (
             <li class="relative flex items-center group">
               {index > 0 && (
-                <img 
-                  src={MenuSeparator.src} 
-                  alt="" 
+                <img
+                  src={MenuSeparator.src}
+                  alt=""
                   class="mx-8 h-10 w-auto lg:h-12"
                   aria-hidden="true"
                 />
@@ -76,9 +76,9 @@ const {
               <button
                 id="services-desktop-toggle"
                 type="button"
-                class={`flex items-center gap-3 text-base font-normal transition ${
-                  isServicesActive ? "text-white" : "text-zinc-400"
-                } hover:text-white`}
+                class="nav-menu-item flex items-center gap-3 font-normal"
+                style={`font-size: 20px; color: ${isServicesActive ? "#FFFFFF" : "#999999"};`}
+                data-active={isServicesActive}
               >
                 <span>{l.label}</span>
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,9 +95,9 @@ const {
                     <li>
                       <a
                         href={sl.href}
-                        class={`block px-4 py-2 text-lg transition ${
-                          isSubActive ? "text-white" : "text-zinc-400"
-                        } hover:text-white hover:bg-zinc-900`}
+                        class="nav-submenu-item block px-4 py-2"
+                        style={`font-size: 20px; color: ${isSubActive ? "#FFFFFF" : "#999999"};`}
+                        data-active={isSubActive}
                       >
                         {sl.label}
                       </a>
@@ -108,22 +108,22 @@ const {
             </li>
           );
         }
-        
+
         return (
           <li class="flex items-center">
             {index > 0 && (
-              <img 
-                src={MenuSeparator.src} 
-                alt="" 
+              <img
+                src={MenuSeparator.src}
+                alt=""
                 class="mx-8 h-10 w-auto lg:h-12"
                 aria-hidden="true"
               />
             )}
             <a
               href={l.href}
-              class={`text-base font-normal transition ${
-                isActive ? "text-white" : "text-zinc-400"
-              } hover:text-white`}
+              class="nav-menu-item font-normal"
+              style={`font-size: 20px; color: ${isActive ? "#FFFFFF" : "#999999"};`}
+              data-active={isActive}
             >
               {l.label}
             </a>
@@ -260,6 +260,24 @@ const {
     </div>
   </div>
 </header>
+
+<style>
+  .nav-menu-item {
+    transition: color 0.3s ease-in-out;
+  }
+
+  .nav-menu-item[data-active="false"]:hover {
+    color: #CCCCCC !important;
+  }
+
+  .nav-submenu-item {
+    transition: color 0.3s ease-in-out;
+  }
+
+  .nav-submenu-item[data-active="false"]:hover {
+    color: #CCCCCC !important;
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
