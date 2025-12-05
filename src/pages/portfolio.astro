@@ -2,10 +2,18 @@
 import BaseLayout from "../layouts/Layout.astro";
 import ResidentialHouseImg from "../assets/Residential House.png";
 import ChildcareImg from "../assets/Childcare.png";
-import PublicServiceImg from "../assets/Public Service.png";
+import PublicServiceImg from "../assets/desktop/Desktop_WEB_VERZIJA/Portfolio/BEZ TEKST I BEZ CRNO POD NEGO/Public Service.png";
 import ScanToBIMImg from "../assets/Scan To BIM.png";
 import ScanToCADImg from "../assets/Scan To CAD.png";
 import RevitFamiliesImg from "../assets/Revit Families.png";
+
+// Import all portfolio images
+const residentialImages = import.meta.glob('../assets/desktop/PORTFOLIO/Residential House/*.{png,jpg,jpeg}', { eager: true, query: '?url', import: 'default' });
+const childcareImages = import.meta.glob('../assets/desktop/PORTFOLIO/Childcare/*.{png,jpg,jpeg}', { eager: true, query: '?url', import: 'default' });
+const publicServiceImages = import.meta.glob('../assets/desktop/PORTFOLIO/Public Service/*.{png,jpg,jpeg}', { eager: true, query: '?url', import: 'default' });
+const scanToBIMImages = import.meta.glob('../assets/desktop/PORTFOLIO/Scan To BIM/*.{png,jpg,jpeg}', { eager: true, query: '?url', import: 'default' });
+const scanToCADImages = import.meta.glob('../assets/desktop/PORTFOLIO/Scan to CAD/*.{png,jpg,jpeg}', { eager: true, query: '?url', import: 'default' });
+const revitFamiliesImages = import.meta.glob('../assets/desktop/PORTFOLIO/Revit Families/*.{png,jpg,jpeg}', { eager: true, query: '?url', import: 'default' });
 
 const portfolioItems = [
   {
@@ -13,63 +21,69 @@ const portfolioItems = [
     title: "Residential House",
     image: ResidentialHouseImg,
     category: "Architecture",
+    folderImages: Object.values(residentialImages),
   },
   {
     id: 2,
     title: "Childcare",
     image: ChildcareImg,
     category: "Architecture",
+    folderImages: Object.values(childcareImages),
   },
   {
     id: 3,
     title: "Public Service",
     image: PublicServiceImg,
     category: "Architecture",
+    folderImages: Object.values(publicServiceImages),
   },
   {
     id: 4,
     title: "Scan To BIM",
     image: ScanToBIMImg,
     category: "BIM Services",
+    folderImages: Object.values(scanToBIMImages),
   },
   {
     id: 5,
     title: "Scan To CAD",
     image: ScanToCADImg,
     category: "CAD Services",
+    folderImages: Object.values(scanToCADImages),
   },
   {
     id: 6,
     title: "Revit Families",
     image: RevitFamiliesImg,
     category: "BIM Services",
+    folderImages: Object.values(revitFamiliesImages),
   },
 ];
 ---
 
 <BaseLayout title="Portfolio — BIMCAD Studio">
-  <section class="relative w-full min-h-[92vh] bg-black">
-    <div class="relative z-10 px-6 py-12 lg:px-12 lg:py-16">
-      <div class="max-w-7xl mx-auto">
-        <h1 class="mb-12 text-4xl font-bold text-white lg:text-6xl text-center">
+  <section class="relative w-full h-full bg-black overflow-hidden">
+    <div class="relative z-10 h-full flex flex-col px-6 py-6 lg:px-12 lg:py-8">
+      <div class="max-w-7xl mx-auto w-full flex flex-col h-full">
+        <h1 class="mb-4 lg:mb-6 text-3xl lg:text-5xl font-bold text-white text-center flex-shrink-0">
           Our <span class="font-bold">Portfolio</span>
         </h1>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 flex-1 auto-rows-fr overflow-hidden">
           {
             portfolioItems.map((item) => (
               <div
-                class="group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-105"
+                class="group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-105 h-full"
                 data-portfolio-id={item.id}
               >
                 <img
                   src={item.image.src}
                   alt={item.title}
-                  class="w-full h-64 md:h-80 object-cover"
+                  class="w-full h-full object-cover"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                  <div class="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 class="text-2xl font-bold text-white">{item.title}</h3>
+                  <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
+                    <h3 class="text-xl lg:text-2xl font-bold text-white">{item.title}</h3>
                   </div>
                 </div>
               </div>
@@ -80,19 +94,19 @@ const portfolioItems = [
     </div>
   </section>
 
-  <!-- Gallery Modal -->
+  <!-- Fullscreen Scrollable Viewer -->
   <div
-    id="gallery-modal"
-    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/95 p-4"
+    id="fullscreen-viewer"
+    class="fixed inset-0 z-50 hidden bg-black overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
   >
     <!-- Close button -->
     <button
-      id="close-modal"
-      class="absolute top-4 right-4 text-white hover:text-gray-300 transition z-50"
-      aria-label="Close gallery"
+      id="close-viewer"
+      class="fixed top-6 right-6 text-white hover:text-gray-300 transition z-50 bg-black/50 rounded-full p-3 backdrop-blur-sm"
+      aria-label="Close viewer"
     >
       <svg
-        class="w-8 h-8 md:w-10 md:h-10"
+        class="w-8 h-8"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -105,183 +119,88 @@ const portfolioItems = [
       </svg>
     </button>
 
-    <!-- Image container with navigation -->
-    <div class="flex items-center justify-center gap-8 w-full max-w-[90vw]">
-      <button
-        id="prev-image"
-        class="text-white hover:text-gray-300 transition flex-shrink-0"
-        aria-label="Previous image"
-      >
-        <svg
-          class="w-10 h-10 md:w-12 md:h-12"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"></path>
-        </svg>
-      </button>
-
-      <div class="flex flex-col items-center flex-1">
-        <div
-          class="relative w-[90vw] max-w-[1200px] max-h-[85vh] rounded-2xl overflow-hidden"
-        >
-          <img
-            id="modal-image"
-            src=""
-            alt=""
-            class="w-full h-auto max-h-[85vh] object-contain rounded-2xl"
-          />
-
-          <div
-            class="absolute inset-x-0 bottom-4 md:bottom-8 flex justify-center pointer-events-none"
-          >
-            <div
-              class="px-8 py-4 rounded-full md:rounded-xl text-center"
-            >
-              <h2
-                id="modal-title"
-                class="text-2xl md:text-3xl font-bold text-white"
-              >
-              </h2>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button
-        id="next-image"
-        class="text-white hover:text-gray-300 transition flex-shrink-0"
-        aria-label="Next image"
-      >
-        <svg
-          class="w-10 h-10 md:w-12 md:h-12"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
+    <!-- Images container -->
+    <div id="images-container" class="w-full h-full">
+      <!-- Images will be dynamically inserted here -->
     </div>
   </div>
 </BaseLayout>
 
-<script>
-  const portfolioItems = [
-    {
-      id: 1,
-      title: "Residential House",
-      image: new URL("../assets/Residential House.png", import.meta.url).href,
-      category: "Architecture",
-    },
-    {
-      id: 2,
-      title: "Childcare",
-      image: new URL("../assets/Childcare.png", import.meta.url).href,
-      category: "Architecture",
-    },
-    {
-      id: 3,
-      title: "Public Service",
-      image: new URL("../assets/Public Service.png", import.meta.url).href,
-      category: "Architecture",
-    },
-    {
-      id: 4,
-      title: "Scan To BIM",
-      image: new URL("../assets/Scan To BIM.png", import.meta.url).href,
-      category: "BIM Services",
-    },
-    {
-      id: 5,
-      title: "Scan To CAD",
-      image: new URL("../assets/Scan To CAD.png", import.meta.url).href,
-      category: "CAD Services",
-    },
-    {
-      id: 6,
-      title: "Revit Families",
-      image: new URL("../assets/Revit Families.png", import.meta.url).href,
-      category: "BIM Services",
-    },
-  ];
-
-  let currentImageIndex = 0;
+<script define:vars={{ portfolioItems }}>
+  const portfolioData = portfolioItems;
 
   document.addEventListener("DOMContentLoaded", () => {
-    const modal = document.getElementById("gallery-modal");
-    const modalImage = document.getElementById("modal-image");
-    const modalTitle = document.getElementById("modal-title");
-    const closeBtn = document.getElementById("close-modal");
-    const prevBtn = document.getElementById("prev-image");
-    const nextBtn = document.getElementById("next-image");
+    const viewer = document.getElementById("fullscreen-viewer");
+    const imagesContainer = document.getElementById("images-container");
+    const closeBtn = document.getElementById("close-viewer");
     const portfolioCards = document.querySelectorAll("[data-portfolio-id]");
 
-    function openModal(index) {
-      currentImageIndex = index;
-      const item = portfolioItems[index];
+    if (!viewer || !imagesContainer || !closeBtn) return;
 
-      modalImage.src = item.image;
-      modalImage.alt = item.title;
-      modalTitle.textContent = item.title;
-      
+    function createImageSlide(imageSrc, title, index, totalImages) {
+      const slide = document.createElement("div");
+      slide.className = "relative w-full h-screen snap-start snap-always flex items-center justify-center";
+      slide.style.marginBottom = index < totalImages - 1 ? "2rem" : "0";
 
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
+      slide.innerHTML = `
+        <img
+          src="${imageSrc}"
+          alt="${title}"
+          class="w-full h-full object-contain"
+        />
+      `;
+
+      return slide;
+    }
+
+    function openViewer(portfolioIndex) {
+      if (!imagesContainer || !viewer) return;
+
+      imagesContainer.innerHTML = "";
+
+      const selectedItem = portfolioData[portfolioIndex];
+      const images = selectedItem.folderImages || [];
+
+      if (images.length === 0) return;
+
+      images.forEach((imageSrc, index) => {
+        const slide = createImageSlide(imageSrc, selectedItem.title, index, images.length);
+        imagesContainer.appendChild(slide);
+      });
+
+      viewer.classList.remove("hidden");
       document.body.style.overflow = "hidden";
+
+      // Scroll to the first image
+      const firstSlide = imagesContainer.children[0];
+      if (firstSlide) {
+        firstSlide.scrollIntoView({ behavior: "instant", block: "start" });
+      }
     }
 
-    function closeModal() {
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
+    function closeViewer() {
+      if (!viewer || !imagesContainer) return;
+
+      viewer.classList.add("hidden");
       document.body.style.overflow = "";
-    }
-
-    function showPrevImage() {
-      currentImageIndex =
-        (currentImageIndex - 1 + portfolioItems.length) % portfolioItems.length;
-      openModal(currentImageIndex);
-    }
-
-    function showNextImage() {
-      currentImageIndex = (currentImageIndex + 1) % portfolioItems.length;
-      openModal(currentImageIndex);
+      imagesContainer.innerHTML = "";
     }
 
     portfolioCards.forEach((card) => {
       card.addEventListener("click", () => {
         const id = parseInt(card.getAttribute("data-portfolio-id") || "0", 10);
-        const index = portfolioItems.findIndex((item) => item.id === id);
+        const index = portfolioData.findIndex((item) => item.id === id);
         if (index !== -1) {
-          openModal(index);
+          openViewer(index);
         }
       });
     });
 
-    closeBtn.addEventListener("click", closeModal);
-    prevBtn.addEventListener("click", showPrevImage);
-    nextBtn.addEventListener("click", showNextImage);
-
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
+    closeBtn.addEventListener("click", closeViewer);
 
     document.addEventListener("keydown", (e) => {
-      if (modal.classList.contains("flex")) {
-        if (e.key === "Escape") closeModal();
-        if (e.key === "ArrowLeft") showPrevImage();
-        if (e.key === "ArrowRight") showNextImage();
+      if (viewer && !viewer.classList.contains("hidden") && e.key === "Escape") {
+        closeViewer();
       }
     });
   });
