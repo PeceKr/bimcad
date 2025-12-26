@@ -45,20 +45,20 @@ const tabs = [
     </div>
 
     <!-- Content Container -->
-    <div class="flex-1 px-4 py-4 lg:px-16 lg:py-8 overflow-y-hidden">
-      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 lg:h-full items-start max-w-full">
+    <div class="flex-1 px-4 py-4 lg:px-16 lg:py-8 overflow-y-auto flex justify-center">
+      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-start max-w-[1600px] w-full">
         <!-- Left Column: Image and Text -->
-        <div class="w-full flex flex-col h-full">
+        <div class="w-full flex flex-col">
           <div class="flex-shrink-0">
             <img
               src={BIMImage.src}
               alt="BIM services visual"
-              class="w-full h-auto object-contain"
+              class="w-full h-auto object-contain max-h-[400px] lg:max-h-[500px]"
             />
           </div>
           <div
             class="space-y-2 mt-4 flex-shrink-0 font-normal"
-            style="font-size: 15pt; color: #999999;"
+            style="font-size: 15pt; color: #999999; line-height: 1.6;"
           >
             <p>
               At <span class="font-bold text-[#f3f3f3]">BIMCAD Studio</span>, we
@@ -74,13 +74,13 @@ const tabs = [
 
         <!-- Right Column: Services List -->
         <div
-          class="space-y-4 overflow-y-auto h-full"
+          class="space-y-4"
         >
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">
               BIM Modeling and Drafting
             </h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Producing accurate, coordinated 3D models for architectural,
               structural, and MEP projects.
             </p>
@@ -89,16 +89,16 @@ const tabs = [
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">
               Scan-to-BIM Point Cloud Processing
             </h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Converting laser scans and reality capture data into precise BIM
               models for coordination and documentation.
             </p>
           </div>
           <div>
-            <h2 class="font-bold text-white mb-4" style="font-size: 15pt;">
+            <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">
               BIM Consulting
             </h2>
-            <p class="leading-relaxed font-normal" style="font-size: 19pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Advising companies on best practices, workflows, and standards to
               implement BIM effectively.
             </p>
@@ -107,7 +107,7 @@ const tabs = [
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">
               BIM Training
             </h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Hands-on courses enabling teams to develop practical skills in
               Revit, CAD, and other BIM tools.
             </p>
@@ -116,7 +116,7 @@ const tabs = [
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">
               Outsourcing Services
             </h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Providing flexible BIM support to help teams meet project
               deadlines without compromising quality.
             </p>

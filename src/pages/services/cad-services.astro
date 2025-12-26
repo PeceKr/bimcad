@@ -38,18 +38,18 @@ const tabs = [
     </div>
 
     <!-- Content Container -->
-    <div class="flex-1 px-4 py-4 lg:px-16 lg:py-8 overflow-y-hidden">
-      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 lg:h-full items-start max-w-full">
+    <div class="flex-1 px-4 py-4 lg:px-16 lg:py-8 overflow-y-auto flex justify-center">
+      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-start max-w-[1600px] w-full">
         <!-- Left Column: Image and Text -->
-        <div class="w-full flex flex-col h-full">
+        <div class="w-full flex flex-col">
           <div class="flex-shrink-0">
             <img
               src={CADImage.src}
               alt="CAD services visual"
-              class="w-full h-auto object-contain"
+              class="w-full h-auto object-contain max-h-[400px] lg:max-h-[500px]"
             />
           </div>
-          <div class="space-y-2 mt-4 flex-shrink-0 font-normal" style="font-size: 15pt; color: #999999;">
+          <div class="space-y-2 mt-4 flex-shrink-0 font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
             <p>
               At <span class="font-bold text-[#f3f3f3]">BIMCAD Studio</span>, we provide professional CAD services to support design and documentation needs across all stages of a project.
             </p>
@@ -60,34 +60,34 @@ const tabs = [
         </div>
 
         <!-- Right Column: Services List -->
-        <div class="space-y-4 overflow-y-auto h-full">
+        <div class="space-y-4">
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">2D Drafting and Documentation</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Producing detailed technical drawings for architectural, structural, and MEP projects.
             </p>
           </div>
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">Drawing Conversion and Standardisation</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Updating legacy drawings to current CAD formats while ensuring compliance with industry standards.
             </p>
           </div>
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">Shop and Fabrication Drawings</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Preparing accurate drawings for manufacturing, fabrication, and installation.
             </p>
           </div>
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">Point Cloud to CAD</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Converting laser scan data into precise CAD drawings for refurbishments, retrofits, or as-built documentation.
             </p>
           </div>
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">Outsourcing Services</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Providing flexible CAD support to handle peak workloads and deliver documentation on schedule.
             </p>
           </div>

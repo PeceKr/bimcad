@@ -38,18 +38,18 @@ const tabs = [
     </div>
 
     <!-- Content Container -->
-    <div class="flex-1 px-4 py-4 lg:px-16 lg:py-8 overflow-y-hidden">
-      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 lg:h-full items-start max-w-full">
+    <div class="flex-1 px-4 py-4 lg:px-16 lg:py-8 overflow-y-auto flex justify-center">
+      <div class="grid gap-8 lg:grid-cols-2 lg:gap-12 items-start max-w-[1600px] w-full">
         <!-- Left Column: Image and Text -->
-        <div class="w-full flex flex-col h-full">
+        <div class="w-full flex flex-col">
           <div class="flex-shrink-0">
             <img
               src={ArchImage.src}
               alt="Architectural drafting visual"
-              class="w-full h-auto object-contain"
+              class="w-full h-auto object-contain max-h-[400px] lg:max-h-[500px]"
             />
           </div>
-          <div class="space-y-2 mt-4 flex-shrink-0 font-normal" style="font-size: 15pt; color: #999999;">
+          <div class="space-y-2 mt-4 flex-shrink-0 font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
             <p>
               At <span class="font-bold text-[#f3f3f3]">BIMCAD Studio</span>, we provide precise and reliable architectural drafting services tailored to meet project requirements and industry standards.
             </p>
@@ -60,34 +60,34 @@ const tabs = [
         </div>
 
         <!-- Right Column: Services List -->
-        <div class="space-y-4 overflow-y-auto h-full">
+        <div class="space-y-4">
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">Concept and Planning Drawings</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Translating design ideas into accurate 2D plans and layouts for early-stage presentations and approvals.
             </p>
           </div>
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">Construction Documentation</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Producing detailed drawings for tender, construction, and regulatory submissions.
             </p>
           </div>
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">As-Built Drawings</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Delivering accurate documentation that reflects the final built condition of the project.
             </p>
           </div>
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">Drawing Updates and Revisions</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Maintaining consistency and accuracy throughout the design and construction process.
             </p>
           </div>
           <div>
             <h2 class="font-bold text-white mb-4" style="font-size: 19pt;">Standardisation and Quality Control</h2>
-            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999;">
+            <p class="leading-relaxed font-normal" style="font-size: 15pt; color: #999999; line-height: 1.6;">
               Ensuring all drawings comply with project standards and are formatted for efficient collaboration.
             </p>
           </div>
